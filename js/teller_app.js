@@ -120,7 +120,7 @@ function getProducts() {
     obj = $.ajax({url: 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=0', async: false});
     if (obj.status !== 200) {
         alert('not connected');
-        $.mobile.changePage("../teller_app.html#offline", {transition: "slideup", changeHash: false});
+        $.mobile.changePage("#offline", {transition: "slideup", changeHash: false});
     } else {
         alert('connected');
         result = $.parseJSON(obj.responseText);
