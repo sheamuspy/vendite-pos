@@ -20,6 +20,7 @@
     <!-- versionCode is optional and Android only -->
 
     <name>POS</name>
+        <icon src="images/teller_logo.png" />
 
     <description>
       Basic mobile point of sale system
