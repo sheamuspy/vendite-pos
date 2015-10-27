@@ -62,7 +62,7 @@ function submit() {
 
             json_trans = '{"phoneNumber":"' + phoneNumber + '","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
 
-            URL = server + 'teller_function.php?cmd=1&trans=' + json_trans;
+            URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + json_trans;
 
             response = sendRequest(URL);
 
