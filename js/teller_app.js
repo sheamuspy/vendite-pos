@@ -3,7 +3,7 @@
 var test_json = '{"status":0, "products":{"9782342":{"PRODUCT_ID":"4","PRODUCT_NAME":"ideal milk","PRODUCT_BARCODE":"9782342","PRODUCT_PRICE":"2"},"6433949":{"PRODUCT_ID":"5","PRODUCT_NAME":"kalyppo","PRODUCT_BARCODE":"6433949","PRODUCT_PRICE":"1.4"}}}';
 
 var products;
-var server = "http://localhost/mobile_web/POS/php/";
+var server = "http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/";
 var scanned_products = "";
 var total = 0;
 
@@ -117,7 +117,7 @@ function sendRequest(u) {
 function getProducts() {
     "use strict";
     var obj, result;
-    obj = $.ajax({url: 'http://localhost/mobile_web/POS/php/teller_function.php?cmd=0', async: false});
+    obj = $.ajax({url: 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=0', async: false});
     if (obj.status !== 200) {
         alert('not connected');
         $.mobile.changePage("../teller_app.html#offline", {transition: "slideup", changeHash: false});
