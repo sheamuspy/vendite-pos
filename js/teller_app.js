@@ -1,4 +1,4 @@
-/*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts */
+/*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts, sync */
 
 var test_json = '{"status":0, "products":{"9782342":{"PRODUCT_ID":"4","PRODUCT_NAME":"ideal milk","PRODUCT_BARCODE":"9782342","PRODUCT_PRICE":"2"},"6433949":{"PRODUCT_ID":"5","PRODUCT_NAME":"kalyppo","PRODUCT_BARCODE":"6433949","PRODUCT_PRICE":"1.4"}}}';
 
@@ -12,6 +12,7 @@ $(document).ready(function () {
     "use strict";
 //    alert(test_json);
     getProducts();
+    sync();
 
 //    alert(products[9782342].PRODUCT_ID);
 });
@@ -131,6 +132,19 @@ function getProducts() {
 
 function sync() {
     "use strict";
+    var transaction, URL;
+
+    transaction = window.localStorage.getItem('trans');
+
+    if (transaction.length > 0) {
+
+        URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + transaction;
+        sendRequest(URL);
+
+        window.localStorage.setItem('trans', '');
+    }
+
+
 }
 
 function test() {

@@ -44,7 +44,7 @@ $(function () {
 
 function submitOffline() {
     "use strict";
-    var json_trans, URL, response, phoneNumber;
+    var json_trans, URL, response, phoneNumber, transactioToStore;
 
     phoneNumber = $("#phoneNumber").val();
 
@@ -59,8 +59,14 @@ function submitOffline() {
 
 
             response = sendRequest(URL);
-*/
+
             alert(response.message);
+*/
+//            transactioToStore = JSON.stringify(json_trans);
+//            localStorage.setItem('trans', transactioToStore);
+
+            window.localStorage.setItem('trans', json_trans);
+
             $("#transaction-table tbody").empty();
             total = parseFloat(0);
             $("#total").html(total);
