@@ -65,7 +65,7 @@ function submitOffline() {
 //            transactioToStore = JSON.stringify(json_trans);
 //            localStorage.setItem('trans', transactioToStore);
 
-            //window.localStorage.setItem('trans', json_trans);
+            window.localStorage.setItem('trans', json_trans);
 
             $("#transaction-table tbody").empty();
             total = parseFloat(0);
