@@ -1,4 +1,4 @@
-/*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts, sync */
+/*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts, sync, window */
 
 var test_json = '{"status":0, "products":{"9782342":{"PRODUCT_ID":"4","PRODUCT_NAME":"ideal milk","PRODUCT_BARCODE":"9782342","PRODUCT_PRICE":"2"},"6433949":{"PRODUCT_ID":"5","PRODUCT_NAME":"kalyppo","PRODUCT_BARCODE":"6433949","PRODUCT_PRICE":"1.4"}}}';
 
