@@ -7,29 +7,20 @@ var server = "http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_
 var scanned_products = "";
 var total = 0;
 
-
-$(document).ready(function () {
-    "use strict";
-//    alert(test_json);
-    getProducts();
-
-//    alert(products[9782342].PRODUCT_ID);
-});
-
 $(function () {
     "use strict";
-    $("#scanBarcode").click(function () {
+    $("#scanBarcodeOffline").click(function () {
         cordova.plugins.barcodeScanner.scan(
             function (result) {
     //            alert("We got a barcode\n" +
     //                    "Result: " + result.text + "\n" +
     //                    "Format: " + result.format + "\n" +
     //                    "Cancelled: " + result.cancelled);
-                addToTable(result.text);
+                $("#barcodeInputOffline").val(result.text);
             },
             function (error) {
     //            alert("Scanning failed: " + error);
-                $("#result").val(error);
+                $("#barcodeInputOffline").val(error);
             }
         );
     });
@@ -51,7 +42,7 @@ $(function () {
 //    });
 //});
 
-function submit() {
+function submitOffline() {
     "use strict";
     var json_trans, URL, response, phoneNumber;
 
@@ -61,11 +52,14 @@ function submit() {
         if (scanned_products.length > 0) {
 
             json_trans = '{"phoneNumber":"' + phoneNumber + '","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
+/*
+// Change to store json_trans to file.
 
             URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + json_trans;
 
-            response = sendRequest(URL);
 
+            response = sendRequest(URL);
+*/
             alert(response.message);
             $("#transaction-table tbody").empty();
             total = parseFloat(0);
@@ -77,33 +71,35 @@ function submit() {
 
 }
 
-function addToTable(barcode) {
+function addToTableOffline() {
     "use strict";
 
     var bcode, name, price;
 
-    bcode = products[barcode].PRODUCT_BARCODE;
-    name = products[barcode].PRODUCT_NAME;
-    price = products[barcode].PRODUCT_PRICE;
-    $("#transaction-table tbody").append(
-        "<tr>" +
-            "<td>" + name + "</td>" +
-            "<td>" + bcode + "</td>" +
-            "<td>" + price + "</td>" +
-            "</tr>"
-    );
+    bcode = $("barcodeInputOffline").val();
+    name = $("#nameInputOffline").val();
+    price = $("#priceInputOffline").val();
+    if (bcode.length < 1 || name.length < 1 || price.length < 1) {
+        alert("Please make sure you have filled the form completely.");
+    } else {
+        $("#transaction-table tbody").append(
+            "<tr>" +
+                "<td>" + name + "</td>" +
+                "<td>" + bcode + "</td>" +
+                "<td>" + price + "</td>" +
+                "</tr>"
+        );
 
-    if (scanned_products.length > 0) {
-        scanned_products = scanned_products + ', ';
+        if (scanned_products.length > 0) {
+            scanned_products = scanned_products + ', ';
+        }
+
+        scanned_products = scanned_products + bcode;
+
+        total = parseFloat(total) + parseFloat(price);
+        $("#totalOffline").html(total);
+
     }
-
-    scanned_products = scanned_products + bcode;
-
-    total = parseFloat(total) + parseFloat(price);
-    $("#total").html(total);
-
-
-
 }
 
 function sendRequest(u) {
@@ -114,27 +110,8 @@ function sendRequest(u) {
     return result;
 }
 
-function getProducts() {
+function testOffline() {
     "use strict";
-    var obj, result;
-    obj = $.ajax({url: 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=0', async: false});
-    if (obj.status !== 200) {
-        alert('not connected');
-        $.mobile.changePage("#offline", {transition: "slideup", changeHash: false});
-    } else {
-        alert('connected');
-        result = $.parseJSON(obj.responseText);
-        //var result = sendRequest('http://localhost/mobile_web/POS/php/teller_function.php?cmd=0');
-        products = result.products;
-    }
-}
-
-function sync() {
-    "use strict";
-}
-
-function test() {
-    "use strict";
-    addToTable(1234243);
+    $("#barcodeInputOffline").val(1234243);
 }
 
