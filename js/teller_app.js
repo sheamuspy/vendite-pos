@@ -12,7 +12,7 @@ $(document).ready(function () {
     "use strict";
 //    alert(test_json);
     getProducts();
-    sync();
+    //sync();
 
 //    alert(products[9782342].PRODUCT_ID);
 });
@@ -129,7 +129,7 @@ function getProducts() {
         products = result.products;
     }
 }
-
+/*
 function sync() {
     "use strict";
     var transaction, URL;
@@ -142,7 +142,7 @@ function sync() {
         sendRequest(URL);
 
         window.localStorage.setItem('trans', '');
-    }
+    }*/
 
 
 }
