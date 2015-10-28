@@ -130,20 +130,43 @@ function getProducts() {
     }
 }
 
+//function sync() {
+//    "use strict";
+//    var transaction, URL;
+//
+//    transaction = window.localStorage.getItem('trans');
+//
+//    if (transaction.length > 0) {
+//
+//        URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + transaction;
+//        sendRequest(URL);
+//
+//        window.localStorage.setItem('trans', '');
+//    }
+//
+//
+//}
+
 function sync() {
-    "use strict";
-    var transaction, URL;
+      fs.root.getFile('trans.txt', {}, function(fileEntry) {
 
-    transaction = window.localStorage.getItem('trans');
+    // Get a File object representing the file,
+    // then use FileReader to read its contents.
+    fileEntry.file(function(file) {
+       var reader = new FileReader();
 
-    if (transaction.length > 0) {
+       reader.onloadend = function(e) {
 
-        URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + transaction;
-        sendRequest(URL);
+         var transaction = this.result;
+           URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + transaction;
 
-        window.localStorage.setItem('trans', '');
-    }
+       };
 
+       reader.readAsText(file);
+    }, errorHandler);
 
+  }, errorHandler);
+
+}
 }
 

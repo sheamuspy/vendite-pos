@@ -1,4 +1,4 @@
-/*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts, window */
+/*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts, externalDataDirectory */
 
 var test_json = '{"status":0, "products":{"9782342":{"PRODUCT_ID":"4","PRODUCT_NAME":"ideal milk","PRODUCT_BARCODE":"9782342","PRODUCT_PRICE":"2"},"6433949":{"PRODUCT_ID":"5","PRODUCT_NAME":"kalyppo","PRODUCT_BARCODE":"6433949","PRODUCT_PRICE":"1.4"}}}';
 
@@ -65,7 +65,33 @@ function submitOffline() {
 //            transactioToStore = JSON.stringify(json_trans);
 //            localStorage.setItem('trans', transactioToStore);
 
-            window.localStorage.setItem('trans', json_trans);
+//            externalDataDirectory.localStorage.setItem('trans', json_trans);
+
+
+
+            fs.root.getFile('trans.txt', {create: true}, function(fileEntry) {
+
+    // Create a FileWriter object for our FileEntry (log.txt).
+    fileEntry.createWriter(function(fileWriter) {
+
+      fileWriter.onwriteend = function(e) {
+        console.log('Write completed.');
+      };
+
+      fileWriter.onerror = function(e) {
+        console.log('Write failed: ' + e.toString());
+      };
+
+      // Create a new Blob and write it to log.txt.
+      //var blob = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
+
+      fileWriter.write(json_trans);
+
+    }, errorHandler);
+
+  }, errorHandler);
+
+
 
             $("#transaction-table tbody").empty();
             total = parseFloat(0);
