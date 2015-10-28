@@ -12,7 +12,7 @@ $(document).ready(function () {
     "use strict";
 //    alert(test_json);
     getProducts();
-    sync();
+//    sync();
 
 //    alert(products[9782342].PRODUCT_ID);
 });
@@ -146,7 +146,7 @@ function getProducts() {
 //
 //
 //}
-
+/*
 function sync() {
       fs.root.getFile('trans.txt', {}, function(fileEntry) {
 
@@ -168,5 +168,5 @@ function sync() {
   }, errorHandler);
 
 }
-}
+}*/
 

@@ -69,7 +69,7 @@ function submitOffline() {
 
 
 
-            fs.root.getFile('trans.txt', {create: true}, function(fileEntry) {
+      /*      fs.root.getFile('trans.txt', {create: true}, function(fileEntry) {
 
     // Create a FileWriter object for our FileEntry (log.txt).
     fileEntry.createWriter(function(fileWriter) {
@@ -89,7 +89,7 @@ function submitOffline() {
 
     }, errorHandler);
 
-  }, errorHandler);
+  }, errorHandler);*/
 
 
 
