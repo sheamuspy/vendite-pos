@@ -26,22 +26,6 @@ $(function () {
     });
 });
 
-//$(function () {
-//    "use strict";
-//    $("#submit").click(function () {
-//        if (scanned_products.length < 1) {
-//            var json_trans, URL, response;
-//            json_trans = '{"phoneNumber":"","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
-//
-//            URL = server + 'teller.php?cmd=1&trans=' + json_trans;
-//
-//            response = sendRequest(URL);
-//
-//            alert(response.message);
-//        }
-//    });
-//});
-
 function submitOffline() {
     "use strict";
     var json_trans, URL, response, phoneNumber, transactioToStore;
@@ -52,46 +36,8 @@ function submitOffline() {
         if (scanned_products.length > 0) {
 
             json_trans = '{"phoneNumber":"' + phoneNumber + '","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
-/*
-// Change to store json_trans to file.
 
-            URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + json_trans;
-
-
-            response = sendRequest(URL);
-
-            alert(response.message);
-*/
-//            transactioToStore = JSON.stringify(json_trans);
-//            localStorage.setItem('trans', transactioToStore);
-
-//            externalDataDirectory.localStorage.setItem('trans', json_trans);
-
-
-
-      /*      fs.root.getFile('trans.txt', {create: true}, function(fileEntry) {
-
-    // Create a FileWriter object for our FileEntry (log.txt).
-    fileEntry.createWriter(function(fileWriter) {
-
-      fileWriter.onwriteend = function(e) {
-        console.log('Write completed.');
-      };
-
-      fileWriter.onerror = function(e) {
-        console.log('Write failed: ' + e.toString());
-      };
-
-      // Create a new Blob and write it to log.txt.
-      //var blob = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
-
-      fileWriter.write(json_trans);
-
-    }, errorHandler);
-
-  }, errorHandler);*/
-
-
+            localStorage.setItem("trans", json_trans);
 
             $("#transaction-table tbody").empty();
             total = parseFloat(0);
